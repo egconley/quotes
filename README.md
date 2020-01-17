@@ -1,7 +1,7 @@
 # Random Quote Generator
 - Description: App that prints "Quote of the Day" from the FavQs API to the terminal, or while offline reads a JSON file of recent quotes and generates a random quote and author.
-- Input: JSON file.
-- Output: String with random quote.
+- Input: JSON object from FavQs API, JSON file.
+- Output: String with quote and author.
 
 ## Getting Started
 - Run `./gradlew run` from your terminal to run the program.
