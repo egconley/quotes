@@ -20,16 +20,4 @@ public class APIQuoteContent {
         return body + "\n" + " - " + author;
     }
 
-    public void addToJSON(APIQuoteContent quote) {
-        Gson gson = new Gson();
-        System.out.println("made it into addToJSON method!!");
-        try {
-            File file = new File("assets/recentquotes.json");
-            FileReader reader = new FileReader(file);
-            ArrayList myArrayList = gson.fromJson(reader, ArrayList.class);
-            System.out.println(myArrayList);
-        } catch (FileNotFoundException e) {
-            System.out.println("file not found " + e);
-        }
-    }
 }
