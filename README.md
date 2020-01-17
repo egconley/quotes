@@ -1,5 +1,5 @@
 # Random Quote Generator
-- Description: App used to read in a JSON file of recent quotes and generate a random sample.
+- Description: App that prints "Quote of the Day" from the FavQs API to the terminal, or while offline reads a JSON file of recent quotes and generates a random quote and author.
 - Input: JSON file.
 - Output: String with random quote.
 
@@ -14,3 +14,6 @@
 ## Authors
 * [Ellen Conley](https://github.com/egconley)
 * [Chase Tucker](https://github.com/tuckerc)
+
+## Resources
+[FavQs API](https://favqs.com/api)
