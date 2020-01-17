@@ -13,7 +13,11 @@ public class Quote {
     this.author = author;
     this.likes = likes;
     this.text = text;
+  }
 
+  public Quote(String author, String text) {
+    this.author = author;
+    this.text = text;
   }
 
   @Override
