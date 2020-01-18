@@ -10,6 +10,10 @@ public class APIQuote {
         this.quote = quote;
     }
 
+    public APIQuote(APIQuoteContent quote) {
+        this.quote = quote;
+    }
+
     public String toString() {
         return "" + quote;
     }

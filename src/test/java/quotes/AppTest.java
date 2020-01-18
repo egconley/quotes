@@ -10,16 +10,14 @@ import org.junit.Test;
 public class AppTest {
 
   App testApp = new App();
-  String expected = testApp.getQuote();
+  String expected = testApp.getAPIQuote();
 
   @Before
   public void setUp() throws Exception {
-
   }
 
   @Test
   public void testGetQuote() {
-    Assert.assertTrue(expected.contains("Author"));
-    Assert.assertTrue(expected.contains("Quote"));
+    Assert.assertTrue(expected.contains("-"));
   }
 }

@@ -17,7 +17,7 @@ public class APIQuoteContent {
     }
 
     public String toString() {
-        return body + "\n" + " - " + author;
+        return body + " - " + author;
     }
 
 }
