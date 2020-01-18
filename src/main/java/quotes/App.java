@@ -11,6 +11,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
@@ -22,7 +23,6 @@ public class App {
     public static String getLocalQuote() {
 
       Gson gson = new Gson();
-
       Quote[] quote = null;
 
       try {
@@ -34,26 +34,20 @@ public class App {
       }
 
       int quoteNum = (int) (Math.random() * quote.length);
-
       String returnQuote = "Author: " + quote[quoteNum].author + "\n" + "Quote: " + quote[quoteNum].text;
-
       return returnQuote;
-
     }
 
-    public static void getAPIQuote() {
+    public static String getAPIQuote() {
 
         Gson gson = new Gson();
-
         URL url = null;
-
         APIQuote quoteFromAPI = null;
 
         try {
             url = new URL("https://favqs.com/api/qotd");
         } catch (MalformedURLException e) {
             System.out.println("bad url");
-            return;
         }
         try {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -61,17 +55,35 @@ public class App {
                     new InputStreamReader(connection.getInputStream()));
             String currentline = in.readLine();
             while (currentline != null) {
-                //System.out.println(currentline);
+
                 quoteFromAPI = gson.fromJson(currentline, APIQuote.class);
                 System.out.println(quoteFromAPI);
 
+                saveAPIQuoteToJSON(quoteFromAPI);
+
                 currentline = in.readLine();
             }
-            //System.out.println("woooot.  :)");
         } catch (IOException e) {
             System.out.println("Offline - printing local quote.");
             System.out.println(getLocalQuote());
         }
+        return quoteFromAPI.toString();
+    }
+
+    public static void saveAPIQuoteToJSON(APIQuote quoteFromAPI) throws IOException {
+        Gson gson = new Gson();
+
+        File file = new File("assets/recentquotes.json");
+        FileReader reader = new FileReader(file);
+        Quote[] quotes = gson.fromJson(reader, Quote[].class);
+        Quote[] newQuotes = Arrays.copyOf(quotes, quotes.length +1);
+
+        Quote newQuote = new Quote(quoteFromAPI);
+        newQuotes[newQuotes.length -1] = newQuote;
+
+        FileWriter writer = new FileWriter("assets/recentquotes.json");
+        writer.write(gson.toJson(newQuotes));
+        writer.close();
     }
 
 }
